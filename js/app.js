@@ -1,4 +1,4 @@
-var app = angular.module('bugtracker', ['ui.router', "ngResource", 'ngDragDrop' ]);
+var app = angular.module('bugtracker', ['ui.router', "ngResource", "ngRoute" ]);
 app.config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
         .state('home', {
