@@ -8,7 +8,7 @@ app.controller('BoardCtrl', function ($scope, $http, $filter, Ticket) {
         $scope.dropSuccessHandler = function ($event, index, array) {
             array.splice(index, 1);
         };
-        $scope.onDrop = function ($event, $data, array) {
+        $scope.onDrop = function ($event) {
             bugsArray.push($event);
 
         };
