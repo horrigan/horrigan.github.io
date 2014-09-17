@@ -3,7 +3,7 @@ app.controller('EditTicketCtrl', function ($scope, $stateParams, $http, Ticket) 
         //Ticket.get({id:"5419320ee4b075452ab4ef40"}).$promise.
         Ticket.query({q:{id:myId}}).$promise.
             then(function(result){
-                $scope.edit_bug = result;
+                $scope.edit_bug = result[0];
 
                  $scope.edit = function(edit_bug){
                     delete edit_bug._id ;
