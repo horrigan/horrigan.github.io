@@ -5,13 +5,6 @@ app.factory('Ticket', function ($resource) {
             update: { method: 'PUT' }
         }
     );
-
-    Ticket.prototype.update = function (cb) {
-        return Ticket.update({id: this._id.$oid},
-            angular.extend({}, this, {_id: undefined}), cb);
-    };
-    Ticket.prototype.destroy = function (cb) {
-        return Ticket.remove({id: this._id.$oid}, cb);
-    };
     return Ticket
 });
+

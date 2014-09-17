@@ -11,8 +11,8 @@ app.controller('AddNewTicket', function ($scope, $http, $state, $stateParams, Ti
         bug.date = $scope.date;
         bug.status = 'todo';
         bug.id = $scope.newId;
+        bug.comments = [];
         Ticket.save(bug).$promise
-            .then($state.go('home')
-        )
+            .then($state.go('home'))
     };
 });

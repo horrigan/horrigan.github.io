@@ -133,6 +133,13 @@ content{
 #created_date{
     display:none;
 }
+.status_todo{
+    display: none;
+
+}
+.status_span{
+    color:darkgreen;
+}
 .coment_wrap {
     border: 2px dashed #add8e6;
     margin: 15px auto;

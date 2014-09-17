@@ -1,4 +1,4 @@
-var app = angular.module('bugtracker', ['ui.router', "ngResource", "ngRoute", 'ngDragDrop' ]);
+var app = angular.module('bugtracker', ['ui.router', "ngResource", "ngRoute" ]);
 app.config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
         .state('home', {
@@ -15,6 +15,5 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             url: '/bug/:id',
             templateUrl: 'templates/views/edit-ticket.html',
             controller: 'EditTicketCtrl'
-        })
-
+        });
 });

@@ -5,13 +5,6 @@ app.controller('BoardCtrl', function ($scope, $http, $filter, Ticket) {
                 $scope.bugs = result;
             }
         );
-        $scope.dropSuccessHandler = function ($event, index, array) {
-            array.splice(index, 1);
-        };
-        $scope.onDrop = function ($event) {
-            bugsArray.push($event);
-
-        };
     }
 );
 
