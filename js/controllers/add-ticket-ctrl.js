@@ -1,31 +1,27 @@
-app.controller('AddTicketCtrl', function ($scope, $http, $state, $stateParams, Ticket, limitToFilter, constant, Author, $q) {
-    $scope.authors = function (value) {
-        var d = $q.defer();
-        var results = Author.query({q: {name: value}}, function () {
-            var x = d.resolve(results);
-            var names = [];
-            angular.forEach(results, function (item) {
-                names.push(item.name + ' ' + item.surname);
-
-            });
-            return results;
-        });
-        return d.promise
+app.controller('AddTicketCtrl', function ($scope, $http, $state, $stateParams, Ticket, limitToFilter, constant, Author) {
+    $scope.getAuthors = function (val) {
+        return Author.search({q: JSON.stringify({name: {'$regex': val}})}).$promise.then(function (result) {
+            var namesArr = [];
+            angular.forEach(result, function (value) {
+                this.push(value.name + ' ' + value.surname);
+            }, namesArr);
+            return namesArr
+        })
     };
-    $scope.date = new Date();
-    $scope.status = 'todo';
-    $scope.postBugToDb = function (bug) {
+    $scope.ticket = {
+        createdDate: new Date(),
+        status: 'todo',
+        comments: [],
+        trackedTimeArr: []
+    };
+    $scope.postTicketToDb = function (ticket) {
         Ticket.query({s: {"id": -1}, l: 1}).$promise
             .then(function (data) {
-                (data.length === 0) ? bug.id = 1 : bug.id = data[0].id + 1;
-                bug.createdDate = $scope.date;
-                bug.status = 'todo';
-                bug.comments = [];
-                Ticket.save(bug).$promise
+                ticket.id = data.length ? data[0].id + 1 : 1;
+                Ticket.save(ticket).$promise
                     .then(function () {
                         $state.go('board')
                     })
             });
-
     };
 });

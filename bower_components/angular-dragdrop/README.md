@@ -1,54 +1,32 @@
-#Drag and Drop for AngularJS (with Animation)
+#Angular-DragDrop
 
----
+Angular-DragDrop is a native HTML5 Drag and Drop directive written in pure Angular with no dependency on Jquery. 
 
-###v1.0.5 - breaking change
-Do not pass evaluated expressions in callbacks. For example, 
-####Before:
-```
-<div jqyoui-draggable="{onStart:'startCallback({{item}})'}">{{item.title}}</div>
-```
-####After:
-```
-<div jqyoui-draggable="{onStart:'startCallback(item)'}">{{item.title}}</div>
-```
+This is based on the work done by Jason Turim. While this [blog post](http://jasonturim.wordpress.com/2013/09/01/angularjs-drag-and-drop/) was the inspiration for creating a native Drag and Drop solution, the intention was to create something that was more generic. 
 
-##Angular Draggable options
-* **jqyoui-draggable** – A custom angular attribute to make any element draggable. It holds more settings such as:
-    * **index** – number – $index of an item of a model (if it is an array) associated with it
-    * **placeholder** – boolean/string – If true, the place will be occupied even though a dragggable is moved/dropped somewhere else. If 'keep' is supplied, the original item won't be removed from the draggable.
-    * **animate** – boolean – If true, draggable will be animated towards droppable when dropped. If multiple is not set to true on droppable then its draggable will swap its position.
-    * **onStart** – string – callback method to be invoked (has to be defined in a controller) when dragging starts
-    * **onStop** – string – callback method to be invoked when dragging stops
-    * **onDrag** – string – callback method to be invoked while the mouse is moved during the dragging
-    * **applyFilter** - string - applies AngularJS $filter on the list before swapping items. Only applicable, if ngRepeat has any filter (such as orderBy, limitTo) associated with it.
-    * **containment** – string - position/offset. Offset by default. This forces to use jQuery.position() or jQuery.offset() to calculate proper position with respect to parent element or document respectively. 
-* **data-drag** – boolean – If true, element can be draggable. Disabled otherwise.
-* **data-jqyoui-options** – object – should hold all the valid options supported by [jQueryUI Draggable](http://api.jqueryui.com/draggable)
-* **ng-model** – string – An angular model defined in a controller. Should be a JS array or object
+This implementation is mainly different from the one posted in the blog in the following areas : 
 
-##Angular Droppable options
-* **jqyoui-droppable** – A custom angular attribute to make any element droppable. It holds more settings such as:
-    * **index** – number – $index of an item of a model (if it is an array) associated with it
-    * **multiple** – boolean – Requires to be true only if animate is set to true for draggable and to avoid swapping.
-    * **stack** – boolean – Requires if animate is set to true on draggable and if multiple draggables positioned one below the other
-    * **onDrop** – string – callback method to be invoked a draggable is dropped into the droppable
-    * **onOver** – string – callback method to be invoked when an accepted draggable is dragged over the droppable
-    * **onOut** – string – callback method to be invoked when an accepted draggable is dragged out of the droppable
-    * **applyFilter** - string - requires if both droppable as well as draggable share the same ngModel.
-    * **containment** – string - position/offset. Offset by default. This forces to use jQuery.position() or jQuery.offset() to calculate proper position with respect to parent element or document respectively. 
-* **data-drop** – boolean – If true, element can be droppable. Disabled otherwise.
-* **data-jqyoui-options** – object – should hold all the valid options supported by [jQueryUI Droppable](http://api.jqueryui.com/droppable)
-* **ng-model** – string – An angular model defined in a controller. Should be a JS array or object.
+1. Angular-DragDrop does not create an isolate scope. This has huge benefits when it comes to working with other directives. **NOTE :** It also does not pollute the scope with any variables or functions.
 
-##Set up
-* $ cd angular-dragdrop
-* $ sudo npm install
-* $ sudo bower install
-* $ grunt karma
+2. It does not depend on any kind of an ID attribute ( being either present or generated on the fly ). 
+
+3. It allows one to create channels on which different drag and drop directive combinations can work on in the same page ( more on this later ) . 
+
+Pull requests are welcome.
+
+[Documentation](http://ganarajpr.github.io/angular-dragdrop/)
 
 
-## Support
-If you're having problems with using the project, use the support forum at CodersClan.
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/ganarajpr/angular-dragdrop/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
-<a href="http://codersclan.net/forum/index.php?repo_id=17"><img src="http://www.codersclan.net/graphics/getSupport_blue_big.png" width="160"></a>
+
+
+The MIT License
+
+Copyright (c) 2014 Ganaraj P R, [Nebithi](http://www.nebithi.com)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
